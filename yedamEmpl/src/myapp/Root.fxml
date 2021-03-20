@@ -5,7 +5,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+<!--xmlns:fx과 xmlns의 마지막에 버전정보를 지워주면 오류메세지가 뜨지 않는다-->
+
+<VBox alignment="CENTER" prefHeight="251.0" prefWidth="315.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 	<children>
 		<Label text="Hello, JavaFX">
          <font>
