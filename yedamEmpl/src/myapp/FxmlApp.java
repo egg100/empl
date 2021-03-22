@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class FxmlApp extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("StackPane.fxml")); // Label, Button
+		Parent root = FXMLLoader.load(getClass().getResource("viewPackage/Root.fxml")); // Label, Button
 		
 		// 컨테이너를 Scene의 매개값으로.
 		Scene scene = new Scene(root);
