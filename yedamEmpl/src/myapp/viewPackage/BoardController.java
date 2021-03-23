@@ -116,9 +116,15 @@ public class BoardController implements Initializable {
 	}// initialize method end
 	
 	public void prevBtnAction(ActionEvent e) {
-		int index = tableView.getSelectionModel().getSelectedIndex();
-		tableView.getSelectionModel().select(index-1);
-//		ReadOnlyIntegerProperty vo = tableView.getSelectionModel().selectedIndexProperty();
+		int index = tableView.getSelectionModel().getSelectedIndex() - 1;
+		tableView.getSelectionModel().select(index);
+		tableView.scrollTo(index);
+	}
+	
+	public void nextBtnAction(ActionEvent e) {
+		int index = tableView.getSelectionModel().getSelectedIndex() + 1;
+		tableView.getSelectionModel().select(index);
+		tableView.scrollTo(index);
 	}
 
 	public void updateBtnAction(ActionEvent e) {
