@@ -11,21 +11,28 @@ public class Phone {
 		this.image = new SimpleStringProperty(image);
 	}
 
-	public SimpleStringProperty getSmartPhone() {
-		return smartPhone;
+	public String getSmartPhone() {
+		return smartPhone.get();
 	}
 
 	public void setSmartPhone(String smartPhone) {
 		this.smartPhone.set(smartPhone);
 	}
 
-	public SimpleStringProperty getImage() {
-		return image;
+	public String getImage() {
+		return image.get();
 	}
 
 	public void setImage(String image) {
 		this.image.set(image);
 	}
 	
+	public SimpleStringProperty smartPhoneProperty() {
+		return smartPhone;
+	}
+	
+	public SimpleStringProperty imageProperty() {
+		return image;
+	}
 	
 }

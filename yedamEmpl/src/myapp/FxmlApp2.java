@@ -5,16 +5,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import myapp.viewPackage.BoardController;
 
-public class FxmlApp extends Application {
+public class FxmlApp2 extends Application {
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("viewPackage/Board.fxml")); // Label, Button
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("viewPackage/Board.fxml"));
+		Parent root = loader.load();
 		
-		// 컨테이너를 Scene의 매개값으로.
+		BoardController controller = loader.getController();
+		controller.setPrimaryStage(primaryStage);
+		 
 		Scene scene = new Scene(root);
 		
-		//Stage의 매개값으로 Scene 달아줌.
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
@@ -22,4 +26,5 @@ public class FxmlApp extends Application {
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
+
 }
