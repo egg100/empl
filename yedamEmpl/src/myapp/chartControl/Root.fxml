@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="250" prefWidth="850" 
+	fx:controller="myapp.chartControl.RootController">
+	<children>
+		<PieChart fx:id="pieChart"></PieChart>
+		<BarChart fx:id="barChart">
+			<xAxis>
+				<CategoryAxis side="BOTTOM" /> <!-- x축은 바닥에 y축은 왼쪽에 -->
+			</xAxis>
+			<yAxis>
+				<NumberAxis side="LEFT" />
+			</yAxis>
+		</BarChart>
+		<!-- 
+		<AreaChart fx:id="areaChart">
+			<xAxis>
+				<CategoryAxis side="BOTTOM" />
+			</xAxis>
+			<yAxis>
+				<NumberAxis side="LEFT" />
+			</yAxis>
+		</AreaChart>
+		 -->
+	</children>
+</HBox>
+
