@@ -9,6 +9,13 @@ public class Student {
 	SimpleIntegerProperty math;
 	SimpleIntegerProperty eng;
 	
+	public Student() {
+		name = new SimpleStringProperty();
+		lang = new SimpleIntegerProperty();
+		math = new SimpleIntegerProperty();
+		eng = new SimpleIntegerProperty();
+	}
+	
 	public String getName() {
 		return this.name.get();
 	}

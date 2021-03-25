@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<BorderPane prefHeight="300.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1">
+<BorderPane prefHeight="300.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx">
    <center>
       <GridPane prefHeight="238.0" prefWidth="300.0" BorderPane.alignment="CENTER">
         <columnConstraints>

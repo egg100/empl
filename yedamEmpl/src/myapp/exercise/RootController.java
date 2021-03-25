@@ -39,6 +39,18 @@ public class RootController implements Initializable {
 		TableColumn<Student, String> tcName =
 				(TableColumn<Student, String>) tableView.getColumns().get(0);
 		tcName.setCellValueFactory(new PropertyValueFactory<Student, String>("name"));
+		TableColumn<Student, String> tcLang =
+				(TableColumn<Student, String>) tableView.getColumns().get(1);
+		tcLang.setCellValueFactory(new PropertyValueFactory<Student, String>("lang"));
+		TableColumn<Student, String> tcMath =
+				(TableColumn<Student, String>) tableView.getColumns().get(2);
+		tcMath.setCellValueFactory(new PropertyValueFactory<Student, String>("math"));
+		TableColumn<Student, String> tcEng =
+				(TableColumn<Student, String>) tableView.getColumns().get(3);
+		tcEng.setCellValueFactory(new PropertyValueFactory<Student, String>("eng"));
+		
+		
+		tableView.setItems(list);
 	}
 	
 	public void handleBtnAddAction(ActionEvent e) {
@@ -62,21 +74,47 @@ public class RootController implements Initializable {
 					TextField txtEng = (TextField) bp.lookup("#txtEng");
 					
 					Student std = new Student();
-					std.setName(txtName.getText());
-					std.setLang(Integer.parseInt(txtLang.getText()));
-					std.setMath(Integer.parseInt(txtMath.getText()));
-					std.setEng(Integer.parseInt(txtEng.getText()));
+					if(txtName.getText() == "") {
+						std.setName(txtName.getText());
+					} else {
+						std.setName("무명");
+					}
+					if(txtLang.getText() != "" && isDouble(txtLang.getText())) {
+						std.setLang(Integer.parseInt(txtLang.getText()));
+					} else {
+						std.setLang(0);
+					}
+					if(txtMath.getText() != "" && isDouble(txtMath.getText())) {
+						std.setMath(Integer.parseInt(txtMath.getText()));
+					} else {
+						std.setMath(0);
+					}
+					if(txtEng.getText() != "" && isDouble(txtEng.getText())) {
+						std.setEng(Integer.parseInt(txtEng.getText()));
+					} else {
+						std.setEng(0);
+					}
 					list.add(std);
 					stage.close();
-					
 				}
-				
 			});
+			
+			Button btnCancel = (Button) bp.lookup("#btnCancel");
+			btnCancel.setOnAction(a -> stage.close());
+			
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
+	}
+	
+	public boolean isDouble(String str) {
+		try {
+			Double.parseDouble(str);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
 	}
 
 }
