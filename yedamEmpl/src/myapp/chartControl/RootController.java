@@ -46,6 +46,8 @@ public class RootController implements Initializable {
 		data2.add(new XYChart.Data<String, Integer>("이방원", 45));
 		series2.setData(data2);
 		series2.setName("영어");
+		System.out.println(data2);
+		System.out.println(series2.getData());
 		
 		XYChart.Series<String, Integer> series3 = new XYChart.Series<String, Integer>();
 		ObservableList<XYChart.Data<String, Integer>> data3 = FXCollections.observableArrayList();

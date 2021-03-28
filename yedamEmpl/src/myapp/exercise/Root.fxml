@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane prefHeight="300" prefWidth="600" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx"
-	fx:controller="myapp.exercise.RootController">
+<BorderPane prefHeight="300" prefWidth="600" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myapp.exercise.RootController">
 	<center>
 		<TableView fx:id="tableView" prefHeight="193.0" prefWidth="600.0">
 			<columns>
@@ -20,11 +19,9 @@
 		</TableView>
 	</center>
 	<bottom>
-		<HBox prefHeight="70.0">
-			<Button text="추가" onAction="#handleBtnAddAction">
-            <HBox.margin>
-               <Insets left="250.0" top="20.0" />
-            </HBox.margin></Button>
+		<HBox alignment="CENTER" prefHeight="70.0" spacing="30.0">
+			<Button onAction="#handleBtnAddAction" text="추가" />
+        	<Button onAction="#handleBtnChartAction" text="학생별 막대그래프" />
 		</HBox>
 	</bottom>
 </BorderPane>

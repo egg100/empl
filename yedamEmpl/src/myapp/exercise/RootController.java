@@ -2,10 +2,10 @@ package myapp.exercise;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-import common.BoardVO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,12 +14,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -74,7 +79,7 @@ public class RootController implements Initializable {
 					TextField txtEng = (TextField) bp.lookup("#txtEng");
 					
 					Student std = new Student();
-					if(txtName.getText() == "") {
+					if(txtName.getText() != "") {
 						std.setName(txtName.getText());
 					} else {
 						std.setName("무명");
@@ -106,6 +111,57 @@ public class RootController implements Initializable {
 			e1.printStackTrace();
 		}
 		
+	}
+	
+	public void handleBtnChartAction(ActionEvent e) {
+		Stage stage = new Stage(StageStyle.DECORATED);
+		stage.initModality(Modality.WINDOW_MODAL);
+		stage.initOwner(primaryStage);
+		try {
+			BorderPane ch = FXMLLoader.load(getClass().getResource("BarChart.fxml"));
+			Scene scene = new Scene(ch);
+			stage.setScene(scene);
+			stage.show();
+			
+			BarChart<String, Integer> barChart = (BarChart<String, Integer>) ch.lookup("#barChart");
+			CategoryAxis category = (CategoryAxis) ch.lookup("#category");
+			
+			XYChart.Series<String, Integer> series1 = new XYChart.Series<String, Integer>();
+			Stream<Student> stream = list.stream();
+			ObservableList<XYChart.Data<String, Integer>> data1 = stream.map(t -> new XYChart.Data<String, Integer>(t.getName(), t.getLang()))
+				.collect(Collectors.toCollection(FXCollections::observableArrayList));
+			series1.setData(data1);
+			series1.setName("국어");
+			
+			XYChart.Series<String, Integer> series2 = new XYChart.Series<String, Integer>();
+			stream = list.stream();
+			ObservableList<XYChart.Data<String, Integer>> data2 = stream.map(t -> new XYChart.Data<String, Integer>(t.getName(), t.getMath()))
+				.collect(Collectors.toCollection(FXCollections::observableArrayList));
+			series2.setData(data2);
+			series2.setName("수학");
+			
+			XYChart.Series<String, Integer> series3 = new XYChart.Series<String, Integer>();
+			stream = list.stream();
+			ObservableList<XYChart.Data<String, Integer>> data3 = stream.map(t -> new XYChart.Data<String, Integer>(t.getName(), t.getEng()))
+				.collect(Collectors.toCollection(FXCollections::observableArrayList));
+			series3.setData(data3);
+			series3.setName("영어");
+			barChart.getData().add(series1);
+			barChart.getData().add(series2);
+			barChart.getData().add(series3);
+			
+			ObservableList<String> categoryList = FXCollections.observableArrayList();
+			for(Student c : list) {
+				categoryList.add(c.getName());
+			}
+			category.setCategories(categoryList);
+			
+			Button btnCancel = (Button) ch.lookup("#btnCancel");
+			btnCancel.setOnAction(a -> stage.close());
+		
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 	
 	public boolean isDouble(String str) {
